@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+
 app.use(express.logger());
 
 app.get('/', function(request, response) {
@@ -8,6 +9,14 @@ app.get('/', function(request, response) {
   passhello=fs.readFileSync('index.html');
   var hello=passhello.toString();
   response.send(hello);
+});
+
+app.get('/gallery', function(request, response) {
+  fs=require("fs");
+  var passgallery=new Buffer(256);
+  passgallery=fs.readFileSync('gallery.html');
+  var gallery=passgallery.toString();
+  response.send(gallery);
 });
 
 var port = process.env.PORT || 8080;
